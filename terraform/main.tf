@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-1"  # Update with your desired region
 }
 
-resource "aws_vpc" "example_vpc" {
+resource "aws_vpc" "server_vpc" {
   cidr_block = "137.50.0.0/16"  # Update with your desired VPC CIDR block
 }
 
