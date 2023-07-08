@@ -1,0 +1,24 @@
+---
+- name: Configure CloudWatch logs on EC2 instances
+  hosts: ec2_instances
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Install CloudWatch agent
+      yum:
+        name: amazon-cloudwatch-agent
+        state: present
+
+    - name: Copy CloudWatch agent configuration file
+      copy:
+        src: path/to/cloudwatch_agent.json
+        dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+
+    - name: Start CloudWatch agent
+      command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s
+
+    - name: Restart rsyslog service
+      service:
+        name: rsyslog
+        state: restarted
