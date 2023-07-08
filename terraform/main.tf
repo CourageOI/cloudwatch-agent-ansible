@@ -43,7 +43,7 @@ resource "aws_security_group" "private_sg" {
 }
 
 resource "aws_instance" "public_instance" {
-  ami           = "ami-06464c878dbe46da4"  # Update with your desired AMI ID
+  ami           = "ami-06ca3ca175f37dd66"  # Update with your desired AMI ID
   instance_type = "t2.micro"      # Update with your desired instance type
   subnet_id     = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
@@ -61,7 +61,7 @@ resource "aws_instance" "public_instance" {
 }
 
 resource "aws_instance" "private_instance" {
-  ami           = "ami-06464c878dbe46da4"  # Update with your desired AMI ID
+  ami           = "ami-06ca3ca175f37dd66"  # Update with your desired AMI ID
   instance_type = "t2.micro"      # Update with your desired instance type
   subnet_id     = aws_subnet.private_subnet.id
   vpc_security_group_ids = [aws_security_group.private_sg.id]
