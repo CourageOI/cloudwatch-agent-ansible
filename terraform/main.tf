@@ -7,19 +7,19 @@ resource "aws_vpc" "server_vpc" {
 }
 
 resource "aws_subnet" "public_subnet" {
-  vpc_id                  = aws_vpc.example_vpc.id
+  vpc_id                  = aws_vpc.server_vpc.id
   cidr_block              = "137.50.0.0/24"  # Update with your desired public subnet CIDR block
   map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "private_subnet" {
-  vpc_id                  = aws_vpc.example_vpc.id
+  vpc_id                  = aws_vpc.server_vpc.id
   cidr_block              = "137.50.1.0/24"  # Update with your desired private subnet CIDR block
   map_public_ip_on_launch = false
 }
 
 resource "aws_security_group" "public_sg" {
-  vpc_id = aws_vpc.example_vpc.id
+  vpc_id = aws_vpc.server_vpc.id
   
   # Add any additional inbound or outbound rules as needed
   ingress {
@@ -31,7 +31,7 @@ resource "aws_security_group" "public_sg" {
 }
 
 resource "aws_security_group" "private_sg" {
-  vpc_id = aws_vpc.example_vpc.id
+  vpc_id = aws_vpc.server_vpc.id
   
   # Add any additional inbound or outbound rules as needed
   ingress {
